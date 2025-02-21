@@ -1,8 +1,11 @@
+#Namespace
 ---
 apiVersion: v1
 kind: Namespace
 metadata:
   name: game-2048
+
+#Deployment
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -25,6 +28,7 @@ spec:
         name: app-2048
         ports:
         - containerPort: 80
+#Service
 ---
 apiVersion: v1
 kind: Service
@@ -39,6 +43,9 @@ spec:
   type: NodePort
   selector:
     app.kubernetes.io/name: app-2048
+
+# Ingressresourceforexposingapplication to outside world , here we are going to use aws alb controller with ingress resource. 
+# This is a Kubernetes Ingress configuration that defines how external HTTP traffic should be routed to a service within the cluster. 
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
